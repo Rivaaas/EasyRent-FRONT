@@ -17,10 +17,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Image from 'next/image'
 import mypic from '../../../assets/tulogo.png'
 import { Link as MaterialLink } from '@mui/material'
-import { signOut } from "next-auth/react";
+import {signIn, signOut } from "next-auth/react";
 
 
 const pages = ['Catalogo', 'Nosotros', 'Contacto'];
+
 
 const ResponsiveAppBar = ({ session = {} }) => {
   const { user: { name = 'L', image = '' } = {} } = session
@@ -75,12 +76,17 @@ const ResponsiveAppBar = ({ session = {} }) => {
     {
       page: '/agendarVisita',
       text: 'AGENDAR VISITA'
+    },
+    {
+      page: '/google',
+      text: 'Google'
     }
     ]
   }]
 
 
   return (
+
     <ThemeProvider theme={darkTheme}>
       <AppBar position="static">
         <Container maxWidth="xl">
@@ -107,9 +113,7 @@ const ResponsiveAppBar = ({ session = {} }) => {
               }}
             >
 
-
             </Typography>
-
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -183,15 +187,33 @@ const ResponsiveAppBar = ({ session = {} }) => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {/* ACAAAAAAAAAAAAA */}
                 <MenuItem onClick={handleCloseUserMenu}>
+                  { session.user ? (
+                    <Button onClick={(e) => {
+                      e.preventDefault();
+                      signOut();
+                    }}>
+                      <a>Sign Out</a>
+                    </Button>
+                  ) : (
+                    <Button onClick={(e) => {
+                      e.preventDefault();
+                      signIn();
+                    }}>
+                      <a>Sign in</a>
+                    </Button>
+                  )}
+                </MenuItem>
+
+                {/* <MenuItem onClick={handleCloseUserMenu}>
                   <Button onClick={(e) => {
                     e.preventDefault();
                     signOut();
                   }}>
                     <a>Log Out</a>
                   </Button>
-                </MenuItem>
+                </MenuItem> */}
+
 
               </Menu>
             </Box>

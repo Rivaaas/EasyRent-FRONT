@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 import Image from 'next/image'
 
-// const fotito = session.user.image;
 const logGoogle = ({
   session,
 }) => {
@@ -81,7 +80,6 @@ const logGoogle = ({
       </div>
       <div className="text">
         Hello world
-
         <h1>{session.user.name}</h1>
         <h1>{session.user.email}</h1>
         <Image
@@ -99,7 +97,6 @@ const logGoogle = ({
 
 export const getServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
-
   return {
     props: {
       session

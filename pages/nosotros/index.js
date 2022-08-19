@@ -1,11 +1,12 @@
-import { Grid, styled } from '@mui/material'
+import { Alert, Grid, styled } from '@mui/material'
 import { flexbox } from '@mui/system';
 import React from 'react'
+import { getInfoNosotros } from '../../services/nostros.service';
 
-const nosotros = () => {
+const nosotros = ({info, error}) => {
 
   const Informacion = styled('div')(({ theme }) => ({
-    padding: '6rem',
+    padding: '1rem',
     backgroundColor: '#eee',
     display: "flex",
     display: flexbox,
@@ -13,6 +14,7 @@ const nosotros = () => {
   }));
 
   const Foto = styled('div')(({ theme }) => ({
+    padding: '1rem',
     backgroundColor: '#eee',
     display: flexbox,
     width: '50%'
@@ -24,9 +26,8 @@ const nosotros = () => {
       <Informacion
         xs={12}
         md={6}
-
       >
-        <h1>Misión</h1>
+        <h1>{info?.title}</h1>
         <h3>Queremos ser los mejores gestores de inteligencia
           en la movilidad para todos los que desean moverse
           de forma eficiente e inteligente. Entregando
@@ -50,11 +51,37 @@ const nosotros = () => {
 
       >
         <h1>FOTO</h1>
-        
-        
+        <div>
+        {
+          error && (
+            <div variant='outlined' severity="danger">
+              No se pudo conectar
+            </div>
+          )
+        }
+        </div>
       </Foto>
     </Grid>
   )
+}
+
+export const getServerSideProps = async () => {
+  try {
+    const data = await getInfoNosotros()
+    return {
+      props: {
+        info: data,
+        error: false,
+      },
+    };
+  }catch(err){
+    return {
+      props: {
+        info: [],
+        error: true,
+      },
+    };
+  }
 }
 
 export default nosotros

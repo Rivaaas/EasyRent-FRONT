@@ -3,7 +3,7 @@ import { Grid,styled } from '@mui/material'
 import Formulario from '../../components/Formularios/FormularioReserva/index'
 import FormularioGuardarAuto from '../../components/Formularios/FormularioGuardarAuto'
 
-const index = () => {
+const agendarVisita = () => {
   return (
     <Grid
       container
@@ -26,4 +26,4 @@ const index = () => {
   )
 }
 
-export default index
+export default agendarVisita

@@ -1,10 +1,7 @@
-export const getInfoNosotros = () => {
-  return fetch(`${process.env.URL_API_RENT}/nosotros`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    }
+export const getInfoNosotros = async () => {
+  return await fetch(`${process.env.URL_API_RENT}/api/nosotros`, {
+    method: 'GET'
   })
   .then((res) => res.json())
-  .then(({ data }) => data?.attributes)
-}
+  .then(({data}) => data)
+};

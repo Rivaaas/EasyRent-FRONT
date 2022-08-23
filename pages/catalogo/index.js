@@ -2,12 +2,27 @@ import React from 'react'
 import { getSession } from "next-auth/react";
 import { getCatalogue } from '../../services/catalogue.service';
 import CardCar from '../../components/CarCard';
-import { Grid } from '@mui/material';
+import { Alert, Grid } from '@mui/material';
+import BasicModal from '../../components/Modal';
 
 const catalogo = ({ session, catalogue, error }) => {
-  console.log(catalogue, error)
+  const [open, setOpen] = React.useState(false);
+  const [carSelect, setCarSelect] = React.useState({})
+  const handleOpen = (car) => {
+    setOpen(true)
+    setCarSelect(car)
+  };
+  const handleClose = () => setOpen(false);
+
+  React.useEffect(() => {
+    if(session?.user && open){
+      Router.push('/agendavisita/${car.id}')
+    }
+  },[])
+  
   return (
-    <div>
+    <>
+      <BasicModal open={open} handleClose={handleClose} handleOpen={handleOpen} car={carSelect}  session={session}/>
       <h1 style={{
         width: "100%",
         textAlign: "center",
@@ -16,60 +31,62 @@ const catalogo = ({ session, catalogue, error }) => {
         Catalogo
       </h1>
 
-
       {error && (
-        <div style={{ 
+        <div style={{
           display: "flex",
           justifyContent: "center",
           width: "100%",
+          margin: "10px 0",
         }}>
-          <p style={{
-            color: "white",
-            width: "50%",
-            padding: "10px 0",
-            textAlign: "center",
-            backgroundColor: "red",
-            borderRadius: "10px"
-          }}>
-            Hubo un error al traer los datos
-          </p>
+          <Alert severity="error">Error al traer el catalogo!</Alert>
         </div>
       )}
-      {
-        catalogue?.length > 0 && catalogue.map((car, index) => (
-          <Grid container>
-            <Grid item xs={10} md={3} >
-              <CardCar key={index} />
+
+      <Grid 
+        container
+        justifyContent={"center"}
+        spacing={2}
+      >
+        {
+          catalogue?.length > 0 && catalogue.map((car, index) => (
+            <Grid 
+              item 
+              xs={10} 
+              md={3} 
+              key={index} 
+              display="flex"
+              justifyContent="center"
+            >
+              <CardCar car={car} handleOpen={handleOpen} />
             </Grid>
-          </Grid>
-        ))
-      }
-    </div>
+          ))
+        }
+      </Grid>
+
+    </>
   )
 }
-
 export const getServerSideProps = async ({ req }) => {
-    const session = await getSession({ req });
-    
-    try {
-      const data = await getCatalogue()
-      return {
-        props: {
-          session,
-          catalogue: data,
-          error: false,
-        },
-      };
-    }catch(err){
-      return {
-        props: {
-          session,
-          catalogue: [],
-          error: true,
-        },
-      };
-    }
-    
+  const session = await getSession({ req });
+  try {
+    const data = await getCatalogue()
+    return {
+      props: {
+        session,
+        catalogue: data,
+        error: false,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        session,
+        catalogue: [],
+        error: true,
+      },
+    };
+  }
+
 };
 
 export default catalogo

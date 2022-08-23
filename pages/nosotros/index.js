@@ -1,9 +1,9 @@
-import { Alert, Grid, styled } from '@mui/material'
+import { Alert,Box, Grid, styled } from '@mui/material'
 import { flexbox } from '@mui/system';
 import React from 'react'
 import { getInfoNosotros } from '../../services/nostros.service';
 
-const nosotros = ({info, error}) => {
+const nosotros = ({ info, error }) => {
 
   const Informacion = styled('div')(({ theme }) => ({
     padding: '1rem',
@@ -18,7 +18,8 @@ const nosotros = ({info, error}) => {
     backgroundColor: '#eee',
     display: flexbox,
     width: '50%'
-    }));
+  }));
+
   return (
     <Grid
       container
@@ -27,8 +28,18 @@ const nosotros = ({info, error}) => {
         xs={12}
         md={6}
       >
-        <h1>{info?.title}</h1>
-        <h3>Queremos ser los mejores gestores de inteligencia
+        {info.map((datos) => (
+          <Box 
+          display='flex'
+          justifyContent='center'
+          flexDirection='column'
+          alignItems='center'
+          >
+            <h1>{datos.attributes.titulo}</h1>
+            <h2>{datos.attributes.descripcion}</h2>
+          </Box>
+        ))}
+        {/* <h3>Queremos ser los mejores gestores de inteligencia
           en la movilidad para todos los que desean moverse
           de forma eficiente e inteligente. Entregando
           opciones para crear un sistema de transporte
@@ -42,7 +53,7 @@ const nosotros = ({info, error}) => {
           de nuestros usuarios para así eliminar cada vez
           más vehículos particulares por cada vehículo compartido.
           Estamos comprometidos con las ciudades donde estamos
-          presentes y por sobre todo con nuestros usuarios.</h3>
+          presentes y por sobre todo con nuestros usuarios.</h3> */}
       </Informacion>
       <Foto
         xs={12}
@@ -52,13 +63,13 @@ const nosotros = ({info, error}) => {
       >
         <h1>FOTO</h1>
         <div>
-        {
-          error && (
-            <div variant='outlined' severity="danger">
-              No se pudo conectar
-            </div>
-          )
-        }
+          {
+            error && (
+              <div variant='outlined' severity="danger">
+                No se pudo conectar
+              </div>
+            )
+          }
         </div>
       </Foto>
     </Grid>
@@ -74,7 +85,7 @@ export const getServerSideProps = async () => {
         error: false,
       },
     };
-  }catch(err){
+  } catch (err) {
     return {
       props: {
         info: [],
@@ -83,5 +94,7 @@ export const getServerSideProps = async () => {
     };
   }
 }
+
+
 
 export default nosotros

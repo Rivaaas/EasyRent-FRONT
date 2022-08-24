@@ -5,7 +5,6 @@ import logo from '../../../assets/tulogo.png'
 
 
 const FormularioGuardarAuto = ({car}) => {
-  console.log(car,'asdasd')
   return (
     <>
       <Grid container mt='3rem' >

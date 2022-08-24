@@ -37,6 +37,7 @@ export default function CarCard({ car, handleOpen }) {
 
   const mapperAvailable = car?.attributes?.disponibilidad ? 'Disponible' : 'No Disponible'
 
+
   return (
     <Card sx={{ maxWidth: 345, minWidth: 300 }}>
       <CardHeader

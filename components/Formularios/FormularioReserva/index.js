@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { TextField, Grid, styled, Paper, Button } from '@mui/material'
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-const Formulario = ({user}) => {
 
+
+const Formulario = ({ session = {} }) => {
+  const { user = {} } = session
 
   const [data, setData] = useState({
     nombre: '',
@@ -36,15 +39,44 @@ const Formulario = ({user}) => {
     e.preventDefault();
     console.log("SUBMITTTTT")
   }
+
+  const ButtonStyledx = styled('button')(({ theme }) => ({
+    padding: '15px 25px',
+    border: 'unset',
+    borderRadius: '15px',
+    color: '#212121',
+    zIndex: '1',
+    background: '#e8e8e8',
+    position: 'relative',
+    fontWeight: '1000',
+    fontSize: '17px',
+    webkitBoxShadow: '4px 8px 19px -3px rgba(0,0,0,0.27)',
+    boxShadow: '4px 8px 19px -3px rgba(0,0,0,0.27)',
+    transition: 'all 250ms',
+    overflow: 'hidden',
+    ':before': {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      height: '100 %',
+      width: '0',
+      borderRadius: '15px',
+      backgroundColor: '#212121',
+      webkitBoxShadow: ' 4px 8px 19px - 3px rgba(0, 0, 0, 0.27)',
+      boxShadow: '4px 8px 19px - 3px rgba(0, 0, 0, 0.27)',
+      transition: 'all 250ms',
+  }
+  }))
   return (
     <>
       <Grid component='Form' type='submit' onSubmit={handleSubmit}>
         <Grid container spacing={2} mt='3rem' justifyContent='center'>
           <Grid item md={8}>
             <TextField
-              label="Nombre"
+              // label="Nombre"
               name='nombre'
               color="secondary"
+              value={user.name}
               fullWidth
               onChange={handleChange}
             />
@@ -69,25 +101,18 @@ const Formulario = ({user}) => {
           </Grid>
           <Grid item md={8}>
             <TextField
-              label="Correo"
+              // label="Correo"
               name='correo'
               color="secondary"
+              value={user.email}
               fullWidth
               onChange={handleChange}
             />
           </Grid>
-          <Grid md={12}  xs={12} marginTop={2} justifyContent='center' display='flex'>
-            <button  onSubmit={handleChange} >
-              <div className="svg-wrapper-1">
-                <div className="svg-wrapper">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="24">
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
-                  </svg>
-                </div>
-              </div>
-              <span>Send</span>
-            </button>
+          <Grid md={12} xs={12} marginTop={2} justifyContent='center' display='flex'>
+            <ButtonStyledx onSubmit={handleChange} >
+                Reservar
+            </ButtonStyledx>
           </Grid>
         </Grid>
       </Grid>
@@ -95,8 +120,9 @@ const Formulario = ({user}) => {
   )
 }
 
+
+
 export default Formulario
 
 
 
-{/*  */ }

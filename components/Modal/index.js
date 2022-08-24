@@ -45,13 +45,12 @@ const ButtonStyled = styled('button')(({theme}) => ({
 
 export default function BasicModal({handleClose, handleOpen, open, car, session}) {
   const router = useRouter();
-  const inicia = () => {
-    const inicio = signIn();
-  }
+
 
   const handleClickIrAlSitio = () => {
     router.push(`/agendarVisita/${car?.id}`)
   }
+
 
   return (
     <div>

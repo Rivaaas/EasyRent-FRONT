@@ -14,14 +14,14 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from 'next/link'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Image from 'next/image'
-import mypic from '../../../assets/tulogo.png'
 import { Link as MaterialLink } from '@mui/material'
 import {signIn, signOut } from "next-auth/react";
 
 
 const pages = ['Catalogo', 'Nosotros', 'Contacto'];
 
+
+const logo = 'https://previews.123rf.com/images/helloweenn/helloweenn1612/helloweenn161200021/67973090-alquiler-de-coches-plantilla-de-dise%C3%B1o-del-logotipo-eps-10.jpg'
 
 const ResponsiveAppBar = ({ session = {} }) => {
   const { user: { name = 'L', image = '' } = {} } = session
@@ -72,14 +72,6 @@ const ResponsiveAppBar = ({ session = {} }) => {
     {
       page: '/comofunciona',
       text: 'COMO FUNCIONA'
-    },
-    {
-      page: '/agendarVisita',
-      text: 'AGENDAR VISITA'
-    },
-    {
-      page: '/google',
-      text: 'Google'
     }
     ]
   }]
@@ -91,8 +83,8 @@ const ResponsiveAppBar = ({ session = {} }) => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Image
-              src={mypic}
+            <img
+              src={logo}
               alt=""
               width="70px"
               height="70px"

@@ -4,24 +4,25 @@ import Image from 'next/image'
 import logo from '../../../assets/tulogo.png'
 
 
-const FormularioGuardarAuto = () => {
+const FormularioGuardarAuto = ({car}) => {
+  console.log(car,'asdasd')
   return (
     <>
       <Grid container mt='3rem' >
         <Grid item>
-          <Image src={logo} alt="" width="500" height="300" />
+          <Image src={car?.attributes?.imagen?.data[0]?.attributes?.url} alt="" width="500" height="300" />
         </Grid>
         <Grid item md={6}>
-          <h2>MODELO AUTO</h2>
+          <h2>{car?.attributes?.informacion}</h2>
         </Grid>
         <Grid item md={6}>
-          <h2>MARCA</h2>
+          <h2>{car?.attributes?.marca}</h2>
         </Grid>
         <Grid item md={6}>
-          <h2>KILOMETRAJE</h2>
+          <h2>{car?.attributes?.km}</h2>
         </Grid>
         <Grid item md={6}>
-          <h2>PRECIO</h2>
+          <h2>{car?.attributes?.precio}</h2>
         </Grid>
       </Grid>
     </>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { TextField, Grid, styled, Paper, Button } from '@mui/material'
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-const Formulario = () => {
+const Formulario = ({user}) => {
 
 
   const [data, setData] = useState({
@@ -40,12 +40,6 @@ const Formulario = () => {
     <>
       <Grid component='Form' type='submit' onSubmit={handleSubmit}>
         <Grid container spacing={2} mt='3rem' justifyContent='center'>
-          <Grid item md={8} xs={12} display='flex' justifyContent='end'>
-            <Button>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-              Entrar con Google
-            </Button>
-          </Grid>
           <Grid item md={8}>
             <TextField
               label="Nombre"
@@ -83,7 +77,7 @@ const Formulario = () => {
             />
           </Grid>
           <Grid md={12}  xs={12} marginTop={2} justifyContent='center' display='flex'>
-            <button  onSubmit={handleChange} fullWidth >
+            <button  onSubmit={handleChange} >
               <div className="svg-wrapper-1">
                 <div className="svg-wrapper">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="24">

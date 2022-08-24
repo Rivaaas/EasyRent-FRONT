@@ -1,7 +1,8 @@
-import { Alert,Box, Grid, styled } from '@mui/material'
+import { Alert, Box, Grid, styled } from '@mui/material'
 import { flexbox } from '@mui/system';
 import React from 'react'
 import { getInfoNosotros } from '../../services/nostros.service';
+import Image from 'next/image'
 
 const nosotros = ({ info, error }) => {
 
@@ -29,11 +30,11 @@ const nosotros = ({ info, error }) => {
         md={6}
       >
         {info.map((datos) => (
-          <Box 
-          display='flex'
-          justifyContent='center'
-          flexDirection='column'
-          alignItems='center'
+          <Box
+            display='flex'
+            justifyContent='center'
+            flexDirection='column'
+            alignItems='center'
           >
             <h1>{datos.attributes.titulo}</h1>
             <h2>{datos.attributes.descripcion}</h2>
@@ -61,7 +62,7 @@ const nosotros = ({ info, error }) => {
 
 
       >
-        <h1>FOTO</h1>
+        <img src={`${process.env.URL_API_RENT}${info[0]?.attributes?.img?.data[0]?.attributes?.url}`} alt='' width='100px' height='100px' />
         <div>
           {
             error && (

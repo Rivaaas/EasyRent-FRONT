@@ -11,5 +11,5 @@ export const getImage = (car) => {
     return ''
   }
 
-  return `${process.env.URL_API_RENT}${data[0]?.attributes?.url}`;
+  return `http://localhost:1337${data[0]?.attributes?.url}`;
 }

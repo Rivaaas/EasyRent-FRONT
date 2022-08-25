@@ -11,11 +11,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import Link from 'next/link'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link as MaterialLink } from '@mui/material'
-import {signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 
 const pages = ['Catalogo', 'Nosotros', 'Contacto'];
@@ -57,6 +56,7 @@ const ResponsiveAppBar = ({ session = {} }) => {
 
   const appBarDatos = [{
     image: 'urlimage',
+    page: '/home',
     items: [{
       page: '/catalogo',
       text: 'CATALOGO'
@@ -64,10 +64,6 @@ const ResponsiveAppBar = ({ session = {} }) => {
     {
       page: '/nosotros',
       text: 'NOSOTROS'
-    },
-    {
-      page: '/home',
-      text: 'HOME'
     },
     {
       page: '/comofunciona',
@@ -83,12 +79,15 @@ const ResponsiveAppBar = ({ session = {} }) => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <img
-              src={logo}
-              alt=""
-              width="70px"
-              height="70px"
-            />
+            <Link href='/home'>
+              <img
+                src={logo}
+                alt=""
+                width="70px"
+                height="70px"
+                href=""
+              />
+            </Link>
             <Typography
               variant="h6"
               noWrap
@@ -135,7 +134,7 @@ const ResponsiveAppBar = ({ session = {} }) => {
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                {appBarDatos.map(({ image, items }, index) => (
+                {appBarDatos.map(({ image, items, page }, index) => (
                   <Box key={index}>
                     {items.map(({ text, page }, i) => (
                       <MenuItem key={i} onClick={handleCloseNavMenu}>
@@ -148,7 +147,7 @@ const ResponsiveAppBar = ({ session = {} }) => {
             </Box>
             {/* VISTA PC */}
 
-            {appBarDatos.map(({ image, items }, index) => (
+            {appBarDatos.map(({ page, items }, index) => (
               <Box key={index} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {items.map(({ text, page }, i) => (
                   <Box key={page}>
@@ -180,7 +179,7 @@ const ResponsiveAppBar = ({ session = {} }) => {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={handleCloseUserMenu}>
-                  { session.user ? (
+                  {session.user ? (
                     <Button onClick={(e) => {
                       e.preventDefault();
                       signOut();

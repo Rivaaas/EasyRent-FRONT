@@ -5,6 +5,7 @@ import { getInfoNosotros } from '../../services/nostros.service';
 
 const nosotros = ({ info, error }) => {
 
+
   const Informacion = styled('div')(({ theme }) => ({
     padding: '1rem',
     backgroundColor: '#eee',
@@ -34,19 +35,18 @@ const nosotros = ({ info, error }) => {
             justifyContent='center'
             flexDirection='column'
             alignItems='center'
+            key={datos.attributes.titulo}
           >
             <h1>{datos.attributes.titulo}</h1>
-            <h2>{datos.attributes.descripcion}</h2>
+            <p>{datos.attributes.descripcion}</p>
           </Box>
         ))}
       </Informacion>
       <Foto
         xs={12}
         md={6}
-
-
       >
-        <img src={`${process.env.URL_API_RENT}${info[0]?.attributes?.img?.data[0]?.attributes?.url}`} alt='' width='100px' height='100px' />
+        <img src={`http://localhost:1337${info[0]?.attributes?.img?.data[0]?.attributes?.url}`} alt='' width='600px' height='500px' />
         <div>
           {
             error && (

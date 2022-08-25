@@ -79,6 +79,7 @@ const Formulario = ({ session = {} }) => {
               value={user.name}
               fullWidth
               onChange={handleChange}
+              disabled
             />
           </Grid>
           <Grid item md={8}>
@@ -106,6 +107,7 @@ const Formulario = ({ session = {} }) => {
               color="secondary"
               value={user.email}
               fullWidth
+              disabled
               onChange={handleChange}
             />
           </Grid>

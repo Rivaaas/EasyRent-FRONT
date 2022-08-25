@@ -9,7 +9,6 @@ const comofunciona = ({ session, error, pasosn }) => {
 
  
 
-
   const Logo = styled('div')(({ theme }) => ({
     padding: '6rem'
   }));
@@ -18,30 +17,32 @@ const comofunciona = ({ session, error, pasosn }) => {
 
   return (
 
-    <Grid container md={12}>
+    <Grid container >
       <Grid
         item
         md={6}
         display='flex'
         flexDirection='column'
         justifyContent='center'
-        alignItems='center'
       >
         {pasosn.map((paso) => (
           <Box
             xs={12}
             md={12}
+            display='flex'
+            key={paso.attributes.descripcionPaso}
           >
-            <h1>{paso.attributes.descripcionPaso}</h1>
+            <h2>{paso.attributes.descripcionPaso} </h2>
           </Box>
         ))}
       </Grid>
       <Grid
         item
         md={6}
+        mt='2rem'
       >
         <Box>
-          <Image src={logo} alt='' width='400px' height='400px' />
+          <Image  src={logo} alt='' width='600px' height='550px' />
         </Box>
       </Grid>
     </Grid>

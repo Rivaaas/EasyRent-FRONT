@@ -3,13 +3,14 @@ import { Alert, Button, Grid, styled } from '@mui/material'
 import Formulario from '../../components/Formularios/FormularioReserva/index'
 import FormularioGuardarAuto from '../../components/Formularios/FormularioGuardarAuto'
 import { getSession } from 'next-auth/react'
-import {signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import { getCar, getCatalogue } from '../../services/catalogue.service'
 
 
-const agendarVisita = ({car, error= false, session = {}}) => {
+const agendarVisita = ({ car, error = false, session = {} }) => {
 
 
-  console.log("AGENDAR VISITA",car)
+  console.log("AGENDAR VISITA", car)
 
   return (
     <Grid
@@ -36,7 +37,7 @@ const agendarVisita = ({car, error= false, session = {}}) => {
               height: "100%"
             }}>
               <Grid item md={8} xs={12} display='flex' justifyContent='end'>
-                <Button onClick={()=>{
+                <Button onClick={() => {
                   signIn();
                 }}>
                   <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
@@ -62,10 +63,12 @@ const agendarVisita = ({car, error= false, session = {}}) => {
 
 export const getServerSideProps = async ({ req, query }) => {
   const session = await getSession({ req });
+
   const { id } = query;
+
   try {
-    const data = getCar(id);
-    
+    const data = await getCar(id)
+    console.log(data)
     return {
       props: {
         session,
@@ -77,12 +80,13 @@ export const getServerSideProps = async ({ req, query }) => {
     return {
       props: {
         session,
-        car: {},
+        catalogue: [],
         error: true,
       },
     };
   }
-}
+
+};
 
 
 export default agendarVisita

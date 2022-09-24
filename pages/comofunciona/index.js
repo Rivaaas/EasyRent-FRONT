@@ -32,7 +32,7 @@ const comofunciona = ({ session, error, pasosn }) => {
             display='flex'
             key={paso.attributes.descripcionPaso}
           >
-            <h2>{paso.attributes.descripcionPaso} </h2>
+            <h3>{paso.attributes.descripcionPaso} </h3>
           </Box>
         ))}
       </Grid>

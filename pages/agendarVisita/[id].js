@@ -46,7 +46,7 @@ const agendarVisita = ({ car, error = false, session = {} }) => {
               </Grid>
             </Grid>
           ) : (
-            <Formulario session={session} />
+            <Formulario session={session} car={car}/>
           )
         }
       </Grid>

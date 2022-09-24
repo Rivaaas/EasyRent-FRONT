@@ -1,3 +1,4 @@
+import { Info } from '@mui/icons-material';
 import { Box, Grid, styled } from '@mui/material'
 import { flexbox } from '@mui/system';
 import React from 'react'
@@ -26,8 +27,8 @@ const nosotros = ({ info, error }) => {
       container
     >
       <Informacion
-        xs={12}
         md={6}
+        xs={12}
       >
         {info.map((datos) => (
           <Box
@@ -42,10 +43,7 @@ const nosotros = ({ info, error }) => {
           </Box>
         ))}
       </Informacion>
-      <Foto
-        xs={12}
-        md={6}
-      >
+      <Foto md={6} xs={6}>
         <img src={`http://localhost:1337${info[0]?.attributes?.img?.data[0]?.attributes?.url}`} alt='' width='600px' height='500px' />
         <div>
           {

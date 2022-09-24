@@ -30,8 +30,10 @@ export default function CarCard({ car, handleOpen }) {
   const mapperAvailable = car?.attributes?.disponibilidad ? 'Disponible' : 'No Disponible'
 
 
+
+
   return (
-    <Card sx={{ maxWidth: 345, minWidth: 300 }}>
+    <Card sx={{ maxWidth: 345, minWidth: 300, marginBottom: '2rem' }}>
       <CardHeader
         subheader={mapperAvailable}
       />
@@ -53,28 +55,32 @@ export default function CarCard({ car, handleOpen }) {
               {car?.attributes?.marca}
             </Typography>
           </Grid>
-          <Grid item xs={12} >
-
+          <Grid item xs={12}>
             <Typography
               sx={{
                 fontSize: "14px",
-                color: "red",
-
+                color: "#CF7500",
+                fontWeight: 'bold'
               }}
             >
               <a>$</a>{car?.attributes?.precio}
             </Typography>
           </Grid>
           <Grid item xs={12} md={6} >
-            <Button onClick={() => handleOpen(car)}>
-              <Typography
-                sx={{
-                  fontSize: "17px",
-                }}
-              >
-                Reservar
-              </Typography>
-            </Button>
+            {car?.attributes?.disponibilidad ? (
+              <Button onClick={() => handleOpen(car)}>
+                <Typography
+                  sx={{
+                    fontSize: "17px",
+                  }}
+                >
+                  Reservar
+                </Typography>
+              </Button>
+            ) : (
+              <p>No disponible</p>
+            ) }
+
           </Grid>
         </Grid>
       </CardContent>

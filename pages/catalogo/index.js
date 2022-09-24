@@ -6,6 +6,8 @@ import { Alert, Grid } from '@mui/material';
 import BasicModal from '../../components/Modal';
 
 const catalogo = ({ session, catalogue, error }) => {
+
+
   const [open, setOpen] = React.useState(false);
   const [carSelect, setCarSelect] = React.useState({})
   const handleOpen = (car) => {
@@ -23,13 +25,7 @@ const catalogo = ({ session, catalogue, error }) => {
   return (
     <>
       <BasicModal open={open} handleClose={handleClose} handleOpen={handleOpen} car={carSelect} session={session} />
-      <h1 style={{
-        width: "100%",
-        textAlign: "center",
-        padding: "10px 0"
-      }}>
-        Catalogo
-      </h1>
+ 
 
       {error && (
         <div style={{
@@ -46,6 +42,7 @@ const catalogo = ({ session, catalogue, error }) => {
         container
         justifyContent={"center"}
         spacing={2}
+        marginTop='1px'
       >
         {
           catalogue?.length > 0 && catalogue.map((car, index) => (

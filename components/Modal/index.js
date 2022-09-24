@@ -62,6 +62,9 @@ export default function BasicModal({ handleClose, handleOpen, open, car, session
                 {car?.attributes?.marca}
               </Typography>
               <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ justifyContent: 'center' }} >
+                {car?.attributes?.modelo}
+              </Typography>
+              <Typography id="modal-modal-title" variant="h6" component="h2" sx={{ justifyContent: 'center' }} >
                 {car?.attributes?.informacion}
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2, justifyContent: 'center', display: 'flex' }}>

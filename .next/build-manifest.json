@@ -29,6 +29,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/catalogo.js"
+    ],
+    "/comofunciona": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/comofunciona.js"
+    ],
+    "/nosotros": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/nosotros.js"
     ]
   },
   "ampFirstPages": []

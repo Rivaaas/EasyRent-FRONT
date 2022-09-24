@@ -11,6 +11,8 @@ const logGoogle = ({
     if (session) {
       return false;
     }
+    
+    
 
     return (
       <div>

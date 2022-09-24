@@ -1,9 +1,9 @@
 import React from 'react'
+import Home from './home'
 const index = () => {
   return (
     <div>
-      <h1>home</h1>
-      <button>Hola15112057-1</button>
+      <Home/>
     </div>
   )
 }
